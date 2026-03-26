@@ -1,20 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>Type 2 Diabetes: Risk and Prevention</title>
+<title>Statistics</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
-body { margin:0; font-family:Arial; color:white; }
+body { background:#0f172a; color:white; text-align:center; font-family:Arial; margin:0; }
 
 /* Loader */
 #loader {
-  position:fixed;
-  width:100%; height:100%;
+  position:fixed; width:100%; height:100%;
   background:#0f172a;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  display:flex; justify-content:center; align-items:center;
   z-index:9999;
 }
 .spinner {
@@ -26,77 +23,26 @@ body { margin:0; font-family:Arial; color:white; }
 }
 @keyframes spin { to { transform:rotate(360deg);} }
 
-/* Background */
-video.bg {
-  position:fixed;
-  width:100%; height:100%;
-  object-fit:cover;
-  z-index:-1;
-}
-.overlay {
-  position:fixed;
-  width:100%; height:100%;
-  background:rgba(0,0,0,0.7);
-  z-index:-1;
+nav { background:#020617; padding:15px; }
+nav a { color:#60a5fa; margin:20px; }
+
+.container {
+  width:70%; margin:20px auto;
+  background:#1e293b; padding:20px; border-radius:10px;
 }
 
-/* Nav */
-nav {
-  background:#020617;
-  padding:15px;
-  text-align:center;
+canvas {
+  max-width:500px;
+  margin:auto;
+  transition:0.3s;
 }
-nav a {
-  color:#60a5fa;
-  margin:20px;
-  text-decoration:none;
-}
-
-/* Header */
-header {
-  text-align:center;
-  padding:40px;
-}
-h1 {
-  font-size:60px;
-  color:#60a5fa;
-}
-
-/* Sections */
-.section {
-  width:70%;
-  margin:20px auto;
-  background:#1e293b;
-  padding:20px;
-  border-radius:10px;
-}
-
-/* Scroll images */
-.fade-img {
-  width:100%;
-  border-radius:10px;
-  margin-top:10px;
-  opacity:0;
-  transform:translateY(50px);
-  transition:1s;
-}
-.fade-img.show {
-  opacity:1;
-  transform:translateY(0);
-}
+canvas:hover { transform:scale(1.05); }
 </style>
 </head>
 
 <body>
 
-<!-- Loader -->
 <div id="loader"><div class="spinner"></div></div>
-
-<!-- Background -->
-<video class="bg" autoplay muted loop>
-  <source src="https://cdn.coverr.co/videos/coverr-doctor-checking-patient-5171/1080p.mp4">
-</video>
-<div class="overlay"></div>
 
 <nav>
 <a href="index.html">Information</a>
@@ -104,52 +50,20 @@ h1 {
 <a href="quiz.html">Quiz</a>
 </nav>
 
-<header>
-<h1>Type 2 Diabetes</h1>
-<p>Understanding the Disease, Risk, and Prevention</p>
-</header>
+<h1>📊 Diabetes Statistics</h1>
 
-<div class="section">
-<h2>Description</h2>
-<p>Type 2 Diabetes is a chronic disease affecting blood sugar regulation.</p>
-<img class="fade-img" src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5">
-</div>
-
-<div class="section">
-<h2>Effects</h2>
-<ul>
-<li>Heart disease</li>
-<li>Kidney damage</li>
-<li>Vision loss</li>
-</ul>
-<img class="fade-img" src="https://images.unsplash.com/photo-1579154204601-01588f351e67">
-</div>
-
-<div class="section">
-<h2>Risk Factors</h2>
-<ul>
-<li>Poor diet</li>
-<li>Lack of exercise</li>
-<li>Obesity</li>
-</ul>
-<img class="fade-img" src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528">
-</div>
+<div class="container"><canvas id="c1"></canvas></div>
+<div class="container"><canvas id="c2"></canvas></div>
+<div class="container"><canvas id="c3"></canvas></div>
 
 <script>
-// loader
-window.onload = () => {
-  setTimeout(() => document.getElementById("loader").style.display="none",1500);
-};
+window.onload=()=>setTimeout(()=>loader.style.display="none",1500);
 
-// scroll images
-const imgs=document.querySelectorAll('.fade-img');
-window.addEventListener('scroll',()=>{
-  imgs.forEach(img=>{
-    if(img.getBoundingClientRect().top<window.innerHeight-100){
-      img.classList.add('show');
-    }
-  });
-});
+const opt={plugins:{legend:{labels:{color:"white"}}}};
+
+new Chart(c1,{type:'pie',data:{labels:['Diagnosed','Undiagnosed'],datasets:[{data:[80,20],hoverOffset:30}]},options:opt});
+new Chart(c2,{type:'bar',data:{labels:['Healthy','Inactive','High Sugar'],datasets:[{data:[15,60,75]}]},options:opt});
+new Chart(c3,{type:'line',data:{labels:['2000','2005','2010','2015','2020','2023'],datasets:[{data:[17,20,26,30,34,37],tension:0.3}]},options:opt});
 </script>
 
 </body>
