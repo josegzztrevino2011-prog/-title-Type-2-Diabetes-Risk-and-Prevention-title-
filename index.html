@@ -5,53 +5,14 @@
 <title>Type 2 Diabetes: Risk and Prevention</title>
 
 <style>
-body {
-  margin:0;
-  font-family:Arial;
-  color:white;
-}
+body { margin:0; font-family:Arial; color:white; background:#0f172a; }
 
-/* Background video */
-video.bg {
-  position:fixed;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  z-index:-1;
-}
+nav { background:#020617; padding:15px; text-align:center; }
+nav a { color:#60a5fa; margin:20px; }
 
-.overlay {
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.7);
-  z-index:-1;
-}
+header { text-align:center; padding:40px; }
+h1 { font-size:60px; color:#60a5fa; }
 
-/* Nav */
-nav {
-  background:#020617;
-  padding:15px;
-  text-align:center;
-}
-nav a {
-  color:#60a5fa;
-  margin:20px;
-  text-decoration:none;
-}
-
-/* Header */
-header {
-  text-align:center;
-  padding:40px;
-}
-
-h1 {
-  font-size:60px;
-  color:#60a5fa;
-}
-
-/* Sections */
 .section {
   width:70%;
   margin:20px auto;
@@ -59,57 +20,40 @@ h1 {
   padding:20px;
   border-radius:10px;
 }
-
-/* Scroll images */
-.fade-img {
-  width:100%;
-  border-radius:10px;
-  margin-top:10px;
-  opacity:0;
-  transform:translateY(50px);
-  transition:1s;
-}
-
-.fade-img.show {
-  opacity:1;
-  transform:translateY(0);
-}
 </style>
 </head>
 
 <body>
 
-<video class="bg" autoplay muted loop>
-  <source src="https://cdn.coverr.co/videos/coverr-doctor-checking-patient-5171/1080p.mp4">
-</video>
-
-<div class="overlay"></div>
-
 <nav>
-  <a href="index.html">Information</a>
-  <a href="graphs.html">Statistics</a>
-  <a href="quiz.html">Quiz</a>
+<a href="index.html">Information</a>
+<a href="graphs.html">Statistics</a>
+<a href="quiz.html">Quiz</a>
 </nav>
 
 <header>
-<h1>Type 2 Diabetes</h1>
-<p>Understanding the Disease, Risk, and Prevention</p>
+<h1>Type 2 Diabetes: Risk and Prevention</h1>
 </header>
 
 <div class="section">
 <h2>Description</h2>
-<p>Type 2 Diabetes is a chronic disease affecting blood sugar regulation.</p>
-<img class="fade-img" src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5">
+<p>Type 2 Diabetes is a chronic disease that affects how the body uses glucose. The body becomes resistant to insulin or does not produce enough, causing high blood sugar.</p>
 </div>
 
 <div class="section">
-<h2>Effects</h2>
+<h2>Type of Disease</h2>
+<p>Noninfectious — cannot spread between people.</p>
+</div>
+
+<div class="section">
+<h2>Effects on the Body</h2>
 <ul>
 <li>Heart disease</li>
-<li>Kidney damage</li>
+<li>Kidney failure</li>
 <li>Vision loss</li>
+<li>Nerve damage</li>
+<li>Slow healing wounds</li>
 </ul>
-<img class="fade-img" src="https://images.unsplash.com/photo-1579154204601-01588f351e67">
 </div>
 
 <div class="section">
@@ -118,21 +62,39 @@ h1 {
 <li>Poor diet</li>
 <li>Lack of exercise</li>
 <li>Obesity</li>
+<li>Family history</li>
 </ul>
-<img class="fade-img" src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528">
 </div>
 
-<script>
-const imgs = document.querySelectorAll('.fade-img');
+<div class="section">
+<h2>Determinants of Health</h2>
+<ul>
+<li>Access to healthcare</li>
+<li>Income and education</li>
+<li>Access to healthy foods</li>
+<li>Safe environments for exercise</li>
+</ul>
+</div>
 
-window.addEventListener('scroll', () => {
-  imgs.forEach(img => {
-    if(img.getBoundingClientRect().top < window.innerHeight - 100){
-      img.classList.add('show');
-    }
-  });
-});
-</script>
+<div class="section">
+<h2>Populations at Risk</h2>
+<ul>
+<li>Adults over 40</li>
+<li>Hispanic and African American populations</li>
+<li>Sedentary lifestyle</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>Prevention Strategies</h2>
+<p><strong>Primary:</strong> Healthy lifestyle (diet, exercise)</p>
+<p><strong>Secondary:</strong> Screenings and early detection</p>
+</div>
+
+<div class="section">
+<h2>CDC Data</h2>
+<p>Over 37 million Americans have diabetes and 1 in 5 do not know they have it.</p>
+</div>
 
 </body>
 </html>

@@ -5,44 +5,19 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
-body { background:#0f172a; color:white; text-align:center; font-family:Arial; margin:0; }
-
-/* Loader */
-#loader {
-  position:fixed; width:100%; height:100%;
-  background:#0f172a;
-  display:flex; justify-content:center; align-items:center;
-  z-index:9999;
-}
-.spinner {
-  width:60px; height:60px;
-  border:6px solid #1e293b;
-  border-top:6px solid #60a5fa;
-  border-radius:50%;
-  animation: spin 1s linear infinite;
-}
-@keyframes spin { to { transform:rotate(360deg);} }
-
-nav { background:#020617; padding:15px; }
+body { background:#0f172a; color:white; text-align:center; font-family:Arial; }
+nav { padding:15px; background:#020617; }
 nav a { color:#60a5fa; margin:20px; }
-
-.container {
-  width:70%; margin:20px auto;
-  background:#1e293b; padding:20px; border-radius:10px;
-}
 
 canvas {
   max-width:500px;
-  margin:auto;
-  transition:0.3s;
+  margin:20px auto;
+  display:block;
 }
-canvas:hover { transform:scale(1.05); }
 </style>
 </head>
 
 <body>
-
-<div id="loader"><div class="spinner"></div></div>
 
 <nav>
 <a href="index.html">Information</a>
@@ -50,20 +25,36 @@ canvas:hover { transform:scale(1.05); }
 <a href="quiz.html">Quiz</a>
 </nav>
 
-<h1>📊 Diabetes Statistics</h1>
+<h1>Diabetes Statistics</h1>
 
-<div class="container"><canvas id="c1"></canvas></div>
-<div class="container"><canvas id="c2"></canvas></div>
-<div class="container"><canvas id="c3"></canvas></div>
+<canvas id="chart1"></canvas>
+<canvas id="chart2"></canvas>
+<canvas id="chart3"></canvas>
 
 <script>
-window.onload=()=>setTimeout(()=>loader.style.display="none",1500);
+new Chart(document.getElementById("chart1"), {
+  type: "pie",
+  data: {
+    labels: ["Diagnosed", "Undiagnosed"],
+    datasets: [{ data: [80, 20] }]
+  }
+});
 
-const opt={plugins:{legend:{labels:{color:"white"}}}};
+new Chart(document.getElementById("chart2"), {
+  type: "bar",
+  data: {
+    labels: ["Healthy", "Inactive", "High Sugar"],
+    datasets: [{ data: [15, 60, 75] }]
+  }
+});
 
-new Chart(c1,{type:'pie',data:{labels:['Diagnosed','Undiagnosed'],datasets:[{data:[80,20],hoverOffset:30}]},options:opt});
-new Chart(c2,{type:'bar',data:{labels:['Healthy','Inactive','High Sugar'],datasets:[{data:[15,60,75]}]},options:opt});
-new Chart(c3,{type:'line',data:{labels:['2000','2005','2010','2015','2020','2023'],datasets:[{data:[17,20,26,30,34,37],tension:0.3}]},options:opt});
+new Chart(document.getElementById("chart3"), {
+  type: "line",
+  data: {
+    labels: ["2000","2005","2010","2015","2020","2023"],
+    datasets: [{ data: [17,20,26,30,34,37] }]
+  }
+});
 </script>
 
 </body>
