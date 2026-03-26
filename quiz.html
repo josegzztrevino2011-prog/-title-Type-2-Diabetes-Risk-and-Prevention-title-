@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Quiz</title>
+
+<style>
+body { margin:0; font-family:Arial; color:white; }
+
+/* Loader */
+#loader {
+  position:fixed; width:100%; height:100%;
+  background:#0f172a;
+  display:flex; justify-content:center; align-items:center;
+  z-index:9999;
+}
+.spinner {
+  width:60px; height:60px;
+  border:6px solid #1e293b;
+  border-top:6px solid #60a5fa;
+  border-radius:50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Background */
+video.bg {
+  position:fixed;
+  width:100%; height:100%;
+  object-fit:cover;
+  z-index:-1;
+}
+.overlay {
+  position:fixed;
+  width:100%; height:100%;
+  background:rgba(0,0,0,0.7);
+  z-index:-1;
+}
+
+nav { background:#020617; padding:15px; text-align:center; }
+nav a { color:#60a5fa; margin:20px; }
+
+.question {
+  background:#1e293b;
+  margin:20px auto;
+  padding:20px;
+  border-radius:10px;
+  width:60%;
+}
+
+button {
+  padding:10px; margin:5px;
+  background:#3b82f6;
+  color:white;
+  border:none; border-radius:5px;
+}
+
+#score { text-align:center; font-size:25px; }
+#result { text-align:center; font-size:28px; }
+</style>
+</head>
+
+<body>
+
+<div id="loader"><div class="spinner"></div></div>
+
+<video class="bg" autoplay muted loop>
+  <source src="https://cdn.coverr.co/videos/coverr-doctor-checking-patient-5171/1080p.mp4">
+</video>
+<div class="overlay"></div>
+
+<nav>
+<a href="index.html">Information</a>
+<a href="graphs.html">Statistics</a>
+<a href="quiz.html">Quiz</a>
+</nav>
+
+<h1 style="text-align:center;">🧠 Quiz</h1>
+<div id="score">Score: 0 / 5</div>
+
+<div class="question">
+<p>1. Type of disease?</p>
+<button onclick="ans(this,true)">Noninfectious</button>
+<button onclick="ans(this,false)">Infectious</button>
+</div>
+
+<div class="question">
+<p>2. Risk factor?</p>
+<button onclick="ans(this,true)">Poor diet</button>
+<button onclick="ans(this,false)">Water</button>
+</div>
+
+<div class="question">
+<p>3. Affects?</p>
+<button onclick="ans(this,true)">Blood sugar</button>
+<button onclick="ans(this,false)">Hair</button>
+</div>
+
+<div class="question">
+<p>4. Prevention?</p>
+<button onclick="ans(this,true)">Exercise</button>
+<button onclick="ans(this,false)">Sleep only</button>
+</div>
+
+<div class="question">
+<p>5. Organ affected?</p>
+<button onclick="ans(this,true)">Kidneys</button>
+<button onclick="ans(this,false)">Nails</button>
+</div>
+
+<div id="result"></div>
+
+<script>
+window.onload=()=>setTimeout(()=>loader.style.display="none",1500);
+
+let score=0,total=5,done=0;
+function ans(b,c){
+  if(b.disabled) return;
+  b.parentElement.querySelectorAll("button").forEach(x=>x.disabled=true);
+  if(c){ b.style.background="green"; score++; }
+  else b.style.background="red";
+  done++;
+  scoreBox.innerText=`Score: ${score}/${total}`;
+  if(done===total){
+    let p=Math.round(score/total*100);
+    result.innerText=`Final Score: ${p}%`;
+  }
+}
+</script>
+
+</body>
+</html>
